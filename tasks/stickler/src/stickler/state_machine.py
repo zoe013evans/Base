@@ -63,17 +63,17 @@ class SticklerForTheRules(smach.StateMachine):
             smach.StateMachine.add(
                 "ANNOUNCE_FORBIDDEN_ROOM",
                 Say(text="I'm checking the forbidden room"),
-                transitions={"succeeded": "CHECK_RULE_FORBIDDEN_ROOM",
+                transitions={"succeeded": "GO_TO_LIVING_ROOM",
                             "aborted": "failed",
                             "preempted": "failed",}
             )
 
-            smach.StateMachine.add(
-                "CHECK_RULE_FORBIDDEN_ROOM",
-                CheckRuleForbiddenRoom(),
-                transitions={"succeeded": "GO_TO_LIVING_ROOM",
-                             "failed":"failed"}
-            )
+            # smach.StateMachine.add(
+            #     "CHECK_RULE_FORBIDDEN_ROOM",
+            #     CheckRuleForbiddenRoom(),
+            #     transitions={"succeeded": "GO_TO_LIVING_ROOM",
+            #                  "failed":"failed"}
+            # )
             smach.StateMachine.add(
                 "GO_TO_LIVING_ROOM",
                 GoToLocation(self.living_room_pose),
